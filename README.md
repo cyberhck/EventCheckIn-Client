@@ -1,6 +1,6 @@
 # ts-react-boilerplate
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/crazyfactory/ts-react-boilerplate.svg?token=817c7964cfab1973415f903cc9bde50f4d9ea8d7fe44c1b0e722569f0c99438d)](https://greenkeeper.io/)
+[![Greenkeeper badge](https://badges.greenkeeper.io/cyberhck/EventCheckIn-Client.svg?token=f1a7a56b22ff30cbe0a1fce2e4637f5229515286d7f08c5a9fe4ee3c0341ad6a&ts=1569917770799)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/crazyfactory/ts-react-boilerplate.svg?branch=master)](https://travis-ci.org/crazyfactory/ts-react-boilerplate)
 [![Dependency Status](https://david-dm.org/crazyfactory/ts-react-boilerplate.svg)](https://david-dm.org/crazyfactory/ts-react-boilerplate)
 [![devDependency Status](https://david-dm.org/crazyfactory/ts-react-boilerplate/dev-status.svg)](https://david-dm.org/crazyfactory/ts-react-boilerplate?type=dev)
