@@ -5,3 +5,4 @@
  * Example:
  * require('./bootstrap/css/bootstrap.min.css');
  */
+require("antd/dist/antd.css");

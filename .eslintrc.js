@@ -126,7 +126,7 @@ const tslintRules = {
       }
     ]
   ],
-  "react-this-binding-issue": true,
+  // "react-this-binding-issue": [true, {"bind-decorators": ["autobind"]}],
   "semicolon": [
     true,
     "always"

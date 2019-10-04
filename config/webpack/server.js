@@ -1,17 +1,16 @@
-var path = require('path');
-var fs = require('fs');
-var utils = require('../utils');
+const path = require('path');
+const fs = require('fs');
 
-var nodeModules = {};
+const nodeModules = {};
 fs.readdirSync('node_modules')
-  .filter(function (x) {
+  .filter((x) => {
     return ['.bin'].indexOf(x) === -1;
   })
-  .forEach(function (mod) {
+  .forEach((mod) => {
     nodeModules[mod] = 'commonjs ' + mod;
   });
 
-var config = {
+const config = {
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   externals: nodeModules,
   target: 'node',
@@ -56,6 +55,10 @@ var config = {
       {
         test: /\.(jpe?g|png|gif)$/i,
         loader: 'url-loader?limit=10000&name=images/[hash].[ext]'
+      },
+      {
+        test: /\.(css)$/i,
+        loader: 'file-loader?name=styles/[hash].[ext]'
       }
     ]
   },
@@ -71,10 +74,5 @@ var config = {
     __dirname: false
   }
 };
-
-utils.copySyncIfDoesntExist('./config/main.js', './config/main.local.js');
-utils.createIfDoesntExist('./build');
-utils.createIfDoesntExist('./build/public');
-utils.copySync('./src/favicon.ico', './build/public/favicon.ico', true);
 
 module.exports = config;

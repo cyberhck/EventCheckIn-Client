@@ -12,6 +12,7 @@ export function setupCss(): void {
     font-family: Roboto;
     font-size: ${FontSize.MEDIUM};
     height: auto;
+    overflow: hidden;
     margin: 0;
   }
 

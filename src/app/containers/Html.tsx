@@ -21,6 +21,8 @@ export class Html extends React.Component<IHtmlProps> {
 
     // Scripts
     const scripts = this.getScriptFileNames().map((src, i) => <script src={src} key={i}/>);
+    const styles = this.getStyleFileNames();
+    const links = styles.map((src, i) => <link href={src} rel={"stylesheet"} key={i} type={"text/css"}/>);
 
     const initialStateScript = (
       <script
@@ -32,6 +34,7 @@ export class Html extends React.Component<IHtmlProps> {
     return (
       <html>
         <head>
+          {links}
           {head.base.toComponent()}
           {head.title.toComponent()}
           {head.meta.toComponent()}
@@ -60,5 +63,17 @@ export class Html extends React.Component<IHtmlProps> {
       }
     });
     return scriptFileNames;
+  }
+
+  @autobind
+  private getStyleFileNames(): string[] {
+    const {manifest} = this.props;
+    const styles: string[] = [];
+    Object.keys(manifest).forEach((key: string) => {
+      if (manifest[key].endsWith(".css")) {
+        styles.push(manifest[key]);
+      }
+    });
+    return styles;
   }
 }

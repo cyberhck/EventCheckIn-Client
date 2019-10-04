@@ -6,6 +6,7 @@ import {createSelector} from "reselect";
 import {State as IRouteState} from "router5";
 import {stylesheet} from "typestyle";
 import {config as appConfig} from "../../../config";
+import {Waves} from "../components/Waves";
 import {setupCss} from "../helpers/setupCss";
 import {Translator} from "../models/Translator";
 import {ITranslator} from "../models/TranslatorInterfaces";
@@ -15,15 +16,31 @@ import {HomePage} from "../pages/HomePage";
 import {StarsPage} from "../pages/StarsPage";
 import {IStore} from "../redux/IStore";
 import {translationsSelector} from "../selectors/translationsSelector";
-import {Header} from "./Header";
 
 setupCss();
 
 const classNames = stylesheet({
+  body: {
+    backgroundColor: "rgba(255, 255, 255, 0.87)",
+    borderColor: "rgba(0,0,0,0.09)",
+    borderRadius: 3,
+    boxShadow: "0 2px 8px rgba(0,0,0,0.09)",
+    display: "block",
+    height: "95vh",
+    margin: "0 auto",
+    width: "90%",
+    zIndex: 1
+  },
   container: {
+    display: "flex",
     margin: 0,
-    padding: 0,
-    textAlign: "center"
+    padding: 0
+  },
+  footer: {
+    bottom: 0,
+    height: "15vh",
+    position: "absolute",
+    width: "100%"
   }
 });
 
@@ -46,11 +63,15 @@ class App extends React.Component<IStateToProps> {
     const {route, translations: {notFound}} = this.props;
     const segment = route ? route.name.split(".")[0] : undefined;
     return (
-      <section className={classNames.container}>
-        <Helmet {...appConfig.app.head}/>
-        <Header/>
-        {segment && this.components[segment] ? React.createElement(this.components[segment]) : <div>{notFound}</div>}
-      </section>
+      <div className={classNames.container}>
+        <div className={classNames.body}>
+          <Helmet {...appConfig.app.head}/>
+          {segment && this.components[segment] ? React.createElement(this.components[segment]) : <div>{notFound}</div>}
+        </div>
+        <div className={classNames.footer}>
+          <Waves/>
+        </div>
+      </div>
     );
   }
 }

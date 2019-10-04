@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const utils = require('../utils');
 
 const config = {
   mode: 'development',
@@ -56,6 +55,10 @@ const config = {
       {
         test: /\.(jpe?g|png|gif)$/i,
         loader: 'url-loader?limit=10000&name=images/[hash].[ext]'
+      },
+      {
+        test: /\.(css)$/i,
+        loader: 'file-loader?name=styles/style.[ext]'
       }
     ]
   },
@@ -85,11 +88,5 @@ const config = {
     noEmitOnErrors: true
   }
 };
-
-utils.copySyncIfDoesntExist('./config/main.js', './config/main.local.js');
-utils.createIfDoesntExist('./build');
-utils.createIfDoesntExist('./build/public');
-utils.copySync('./src/favicon.ico', './build/public/favicon.ico', true);
-utils.copySync('./src/index.html', './build/index.html');
 
 module.exports = config;
