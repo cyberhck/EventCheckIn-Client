@@ -15,9 +15,15 @@ export class CheckInSaga extends BaseSaga {
   @autobind
   public *fetchUser(action: IAction<string>):
   IterableIterator<CallEffect | PutEffect<IAction<IUserDetail>> | PutEffect<null>> {
+    const expectedDomain = "example.com";
     try {
       yield put(loadUserDetail.setPending(null));
       const badgeOrEmail = action.payload;
+      // for non employees, error immediately
+      if (badgeOrEmail.includes("@") && badgeOrEmail.split("@")[1] !== expectedDomain) {
+        yield put(loadUserDetail.setRejected("it must be an employee email", null));
+        return;
+      }
       if (badgeOrEmail.includes("@")) {
         console.info("includes @ sign, using checkInWithEmail");
         yield put(loadUserDetail.setFulfilled(yield call(this.api.checkIn.checkInWithEmail, {email: action.payload})));
